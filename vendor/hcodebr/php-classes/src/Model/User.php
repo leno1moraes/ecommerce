@@ -56,6 +56,10 @@ class User extends Model {
 
 		$sql = new Sql();
 
+		/*var_dump($login);
+		var_dump($password);
+		exit;*/
+
 		$results = $sql->select("SELECT * FROM tb_users a 
 								 INNER JOIN tb_persons b ON a.idperson = b.idperson 
 								 WHERE a.deslogin = :LOGIN", array(":LOGIN"=>$login
@@ -154,8 +158,12 @@ class User extends Model {
 	public function update(){
 		$sql = new Sql();
 
+		/*var_dump($this->getdespassword());
+		var_dump(User::getPasswordHash($this->getdespassword()));
+		exit;*/
+
 		$results = $sql->select("CALL sp_usersupdate_save(:iduser, :desperson, :deslogin, :despassword, :desemail, :nrphone, :inadmin)", array(
-			"iduser"=>$this->getiduser(),
+			":iduser"=>$this->getiduser(),
 			":desperson"=>utf8_decode($this->getdesperson()),
 			":deslogin"=>$this->getdeslogin(),
 			":despassword"=>User::getPasswordHash($this->getdespassword()),

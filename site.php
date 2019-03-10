@@ -408,7 +408,7 @@ $app->post('/forgot/reset', function() {
 	$page->setTpl("forgot-reset-success");	
 });
 
-$app->get('/profile', function() {
+$app->get("/profile", function() {
 
 	User::verifyLogin(false);
 
@@ -423,7 +423,7 @@ $app->get('/profile', function() {
 	]);	
 });
 
-$app->post('/profile', function() {
+$app->post("/profile", function() {
 
 	User::verifyLogin(false);
 
@@ -453,6 +453,10 @@ $app->post('/profile', function() {
 		}
 	}	
 
+	/*var_dump($_POST['despassword']);
+	var_dump($user->getdespassword());
+	exit;*/
+
 	$_POST['inadmin'] = $user->getinadmin();
 	$_POST['despassword'] = $user->getdespassword();
 	$_POST['deslogin'] = $_POST['desemail'];
@@ -460,6 +464,9 @@ $app->post('/profile', function() {
 	$user->setData($_POST);
 
 	$user->update();
+
+	/*var_dump($user->getdesperson());
+	exit;*/	
 
 	User::setSucess("Dados alterados com sucesso.");
 
