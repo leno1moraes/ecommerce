@@ -151,7 +151,7 @@ $app->get("/admin/categories", function (){
 		]);
 	}
 
-	$categories = Category::listAll();
+	//$categories = Category::listAll();
 	
 	$page = new PageAdmin();
 
